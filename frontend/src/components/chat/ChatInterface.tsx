@@ -29,6 +29,11 @@ interface Message {
   image?: string
 }
 
+// Base URL for the backend API. Defaults to a same-origin path so that nginx
+// can reverse-proxy `/api/` to the Flask backend in production. Override with
+// NEXT_PUBLIC_API_URL (e.g. https://api.example.com/api/v1) if needed.
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api/v1'
+
 const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -76,7 +81,7 @@ const ChatInterface: React.FC = () => {
       setInput('')
       setIsThinking(true)
       try {
-        const response = await axios.post('http://localhost:5001/chat', {
+        const response = await axios.post(`${API_URL}/chat`, {
           message: input,
           session_id: sessionId,
         })
