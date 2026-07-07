@@ -19,7 +19,7 @@ fi
 #                       still handling concurrent, IO-bound OpenAI requests
 exec gunicorn \
   --pythonpath src \
-  --bind 127.0.0.1:5000 \
+  --bind 127.0.0.1:6001 \
   --workers 1 \
   --threads 8 \
   --timeout 120 \

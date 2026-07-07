@@ -6,7 +6,7 @@
 // Assumes (see DEPLOY.md):
 //   - backend/.venv exists with requirements installed
 //   - frontend has been built:  npm ci && npm run build
-//   - nginx reverse-proxies / -> :3000 and /api/ -> :5000
+//   - nginx reverse-proxies / -> :6000 and /api/ -> :6001
 module.exports = {
   apps: [
     {
@@ -31,7 +31,7 @@ module.exports = {
       max_restarts: 10,
       env: {
         NODE_ENV: 'production',
-        PORT: '3000',
+        PORT: '6000',
         // Same-origin default; nginx proxies /api/ to the backend.
         // Note: NEXT_PUBLIC_* is inlined at BUILD time, so also set this
         // (or frontend/.env.production) before `npm run build` if overriding.
