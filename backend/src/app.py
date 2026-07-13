@@ -9,8 +9,8 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain.chains import create_history_aware_retriever, create_retrieval_chain
+from langchain_classic.chains.combine_documents import create_stuff_documents_chain
+from langchain_classic.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.chat_history import InMemoryChatMessageHistory, BaseChatMessageHistory
 from langchain_core.messages import HumanMessage, AIMessage
@@ -32,9 +32,9 @@ limiter = Limiter(
 )
 
 # Initialize OpenAI
-embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", api_key=os.getenv("OPENAI_API_KEY"))
+embeddings = OpenAIEmbeddings(model="text-embedding-3-large", api_key=os.getenv("OPENAI_API_KEY"))
 chat = ChatOpenAI(
-    model="gpt-4o", temperature=0.7, api_key=os.getenv("OPENAI_API_KEY")
+    model="gpt-5.6-sol", temperature=0.7, api_key=os.getenv("OPENAI_API_KEY")
 )
 
 # Load all CSV files from the data folder
